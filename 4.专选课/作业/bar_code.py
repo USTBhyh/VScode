@@ -34,5 +34,5 @@ def draw_bar_code(stu_number):
        X += w
     goto(-10,-10)
     write(num,move = True, align="left", font=('微软雅黑',5,'bold'))
-
+#this is a test
 exitonclick()
