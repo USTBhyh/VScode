@@ -9,30 +9,29 @@
 '''
 # here put the import lib
 from turtle import*
+from pystrich.ean13 import EAN13Encoder
+encoder = EAN13Encoder("4202715020223")
+encoder.save("pyStrich.png")
 
 
-
-if __name__ == '__main__':
-    pass
-
-def draw_bar_code(stu_number):
-    binnum = bin(stu_number)
-    num = str(binnum)[2:]
-    print(num)
-    penup()
-    X, Y= 0, 0
-    w, h= 3, 50
-    for n in num:
-       fillcolor("black" if n == "1" else "white")
-       begin_fill()
-       goto(X,Y)
-       goto(X+w,Y)
-       goto(X+w,Y+h)
-       goto(X,Y+h)
-       goto(X,Y)
-       end_fill()
-       X += w
-    goto(-10,-10)
-    write(num,move = True, align="left", font=('微软雅黑',5,'bold'))
-#this is a test
-exitonclick()
+# def draw_bar_code(stu_number):
+#     binnum = bin(stu_number)
+#     num = str(binnum)[2:]
+#     print(num)
+#     penup()
+#     X, Y= 0, 0
+#     w, h= 3, 50
+#     for n in num:
+#        fillcolor("black" if n == "1" else "white")
+#        begin_fill()
+#        goto(X,Y)
+#        goto(X+w,Y)
+#        goto(X+w,Y+h)
+#        goto(X,Y+h)
+#        goto(X,Y)
+#        end_fill()
+#        X += w
+#     goto(-10,-10)
+#     write(num,move = True, align="left", font=('微软雅黑',5,'bold'))
+# #this is a test
+# exitonclick()
