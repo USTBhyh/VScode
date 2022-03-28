@@ -1,0 +1,1 @@
+pay_sum = {'Han Meimei': 396, 'Li Lei': 452}

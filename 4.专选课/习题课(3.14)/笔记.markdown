@@ -1,0 +1,18 @@
+#python习题课（3.14）
+###高阶函数
+![](img/1.png))
+***
+```
+#enumerate函数:同时返回下标和函数
+for i,c in enumerate("abc"):
+    print(i,c)
+```
+***
+###prac1
+>![](img/3.png)
+```
+def add_check(number):
+    check = (-3*sum(number[::2])-sum(number[1::2]))%10
+    number.append(check)
+```
+***
