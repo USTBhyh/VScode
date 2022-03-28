@@ -35,5 +35,4 @@ def draw_bar_code(stu_number):
     goto(-10,-10)
     write(num,move = True, align="left", font=('微软雅黑',5,'bold'))
 
-draw_bar_code(420271500000)
 exitonclick()
