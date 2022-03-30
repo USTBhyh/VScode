@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>报告.markdown</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<blockquote>
+<p>学院：计通学院             专业：计科              班级：计201<br>
+姓名：侯云浩                 学号：42027150         实验日期： 2022  年 4 月 2 日</p>
+</blockquote>
+<hr>
+<p>[toc]</p>
+<hr>
+<p>##2022/3/22
+  今天第一次打开作业,看到文档中的带音调的成语拼音，毫无头绪可言。</p>
+<hr>
+<p>##2022/3/25
+  <strong>突发奇想</strong>：既然现在难到我的就是如何在有音调的情况下查到对应的拼音，那为什么不换个思路？改为不使用音调，而是直接用拼音进行匹配。
+  之后经过查阅资料，我在CSDN上查到关于拼音库pypinyin的使用。
+<strong>方法如下：</strong></p>
+<pre class="hljs"><code><div>import pypinyin as py            #导入相应的库
+list = py.lazy_pinyin(&quot;侯云浩&quot;)   #将字符&quot;侯云浩&quot;转换为拼音并存储在列表中
+print(list[0])                    #输出&quot;hou&quot;
+</div></code></pre>
+<p>  接下来，就是处理文本----将所给文本中的所有成语都提取出来，然后存储到一个大列表中等待使用。</p>
+<pre class="hljs"><code><div>def getlist(filename):#文本处理函数
+    chengyu = []
+    file = open(filename+&quot;.txt&quot;,'rt',encoding=&quot;utf-8&quot;)
+    for line in file:
+        list = line.split()
+        chengyu.append(list[0])
+    file.close()
+    return chengyu
+</div></code></pre>
+<hr>
+<p>##2022/3/26
+  完成实现接龙的主要函数。</p>
+<pre class="hljs"><code><div>#随机获取成语列表中以指定字符开始的成语
+def get_chengyu(list,startchengyu):
+    end = startchengyu[-1:] #获取输入成语的最后一个字
+    end_py = py.lazy_pinyin(end) #转换为拼音
+    start_chengyu = [w for w in list if (py.lazy_pinyin(w[:1]) == end_py and not(w.startswith(end)) ) ] #匹配获得所有开头符合要求的成语
+    if(start_chengyu):
+        target_chengyu = start_chengyu[random.randint(0,len(start_chengyu)-1)]
+        return target_chengyu
+    else:
+        return false
+</div></code></pre>
+<hr>
+<p>##2022/3/27
+  在原有作业的要求上加了一点自己的想法——实现了能够根据用户需求进行指定成语的接龙或者进行指定次数的接龙。</p>
+<pre class="hljs"><code><div>#进行指定次数的成语接龙
+def jielong(n,start_chengyu):
+    ed_chengyu = []
+    for i in range(int(n)):
+        if(get_chengyu(chengyulist,start_chengyu) and get_chengyu(chengyulist,start_chengyu) not in ed_chengyu):
+        #判断是否出现过或者无法匹配
+            pre_chengyu = start_chengyu
+            start_chengyu = get_chengyu(chengyulist,start_chengyu)
+            ed_chengyu.append(start_chengyu)
+            result.append(start_chengyu)
+        else:
+            jielong(int(n)-i,pre_chengyu)
+            break
+</div></code></pre>
+<hr>
+<p>##2022/3/29
+  开始写turtle画条形码的部分，遇到困难——画出来的条形码不能够扫描得到其中的信息(无用的条形码)。</p>
+<hr>
+<p>##2022/3/30
+  按照老师上课讲的ppt对画条形码部分进行的改进，结果是虽然可以扫描到条形码了，但是扫描结果为“该条形码无效”。</p>
+<hr>
+<p>##2022/4/2
+  终于解决了条形码的问题，到这里作业也接近尾声了。庆祝！</p>
+<hr>
+<p>#结果展示
+<img src="成语接龙.png" alt=""></p>
+<hr>
+<p>#源代码(最终版本)</p>
+<pre class="hljs"><code><div># -*- coding:utf-8 -*-
+'''
+@File    :   成语接龙.py
+@Time    :   2022/03/26 19:49:07
+@Author  :   hyh
+@Version :   1.0
+@Contact :   1360895771@qq.com
+@Desc    :   专选课作业：成语接龙
+'''
+# here put the import lib
+import pypinyin as py
+import random
+from sympy import false, true
+import Tortoise_and_rabbit_race
+from turtle import*
+
+#处理文本：读取文本数据，并存储在列表中
+def getlist(filename):
+    chengyu = []
+    file = open(filename+&quot;.txt&quot;,'rt',encoding=&quot;utf-8&quot;)
+    for line in file:
+        list = line.split()
+        chengyu.append(list[0])
+    file.close()
+    return chengyu
+
+#随机获取成语列表中以指定字符开始的成语
+def get_chengyu(list,startchengyu):
+    end = startchengyu[-1:] #获取输入成语的最后一个字
+    end_py = py.lazy_pinyin(end) #转换为拼音
+    start_chengyu = [w for w in list if (py.lazy_pinyin(w[:1]) == end_py and not(w.startswith(end)) ) ] #匹配获得所有开头符合要求的成语
+    if(start_chengyu):
+        target_chengyu = start_chengyu[random.randint(0,len(start_chengyu)-1)]
+        return target_chengyu
+    else:
+        return false
+
+#进行指定次数的成语接龙
+def jielong(n,start_chengyu):
+    ed_chengyu = []
+    for i in range(int(n)):
+        if(get_chengyu(chengyulist,start_chengyu) and get_chengyu(chengyulist,start_chengyu) not in ed_chengyu):
+        #判断是否出现过或者无法匹配
+            pre_chengyu = start_chengyu
+            start_chengyu = get_chengyu(chengyulist,start_chengyu)
+            ed_chengyu.append(start_chengyu)
+            result.append(start_chengyu)
+        else:
+            jielong(int(n)-i,pre_chengyu)
+            break
+
+#绘制学号条形码
+def draw_bar_code(stu_number):
+    num = str(stu_number)
+    print(num)
+    penup()
+    X, Y= 360, -320
+    w, h= 3, 50
+    for n in num:
+       fillcolor(&quot;black&quot; if n == &quot;1&quot; else &quot;white&quot;)
+       begin_fill()
+       goto(X,Y)
+       goto(X+w,Y)
+       goto(X+w,Y+h)
+       goto(X,Y+h)
+       goto(X,Y)
+       end_fill()
+       X += w
+    goto(350,-330)
+    write(num,move = True, align=&quot;left&quot;, font=('微软雅黑',5,'bold'))
+
+#转换为01序列
+code_table={
+    &quot;left&quot;:{
+        0:'0001101',
+        1:'0011001',
+        2:'0010011',
+        3:'0111101',
+        4:'0100011',
+        5:'0110001',
+        6:'0101111',
+        7:'0111011',
+        8:'0110111',
+        9:'0001011'
+    },
+    &quot;right&quot;:{
+        0:'1110010',
+        1:'1100110',
+        2:'1101100',
+        3:'1000010',
+        4:'1011100',
+        5:'1001110',
+        6:'1010000',
+        7:'1000100',
+        8:'1001000',
+        9:'1110100'
+    }
+}
+def make_code(number):
+    START_END = &quot;01010&quot;
+    MID = &quot;101&quot;
+    output = START_END
+    for i in number[:6]:
+        output += code_table[&quot;left&quot;][i]
+    output +=MID
+    for i in number[6:]:
+        output += code_table['right'][i]
+    output += START_END
+    return output
+
+
+if __name__ == '__main__':
+
+    #处理文本，获取成语列表
+    File=&quot;7.公选课\作业\成语接龙&quot;
+    chengyulist = getlist(File)
+
+    #测试用
+    #file = open(&quot;成语.txt&quot;,&quot;wt&quot;,encoding=&quot;utf-8&quot;)
+    #for chengyu in chengyulist:
+    #    file.write(chengyu)
+    #file.close()
+
+    #获取接龙的开始成语
+    #start_chengyu = input(&quot;请输入进行接龙的第一个词语:&quot;)
+    start_chengyu = &quot;龟兔赛跑&quot;
+
+    #根据用户需求进行一定次数的成语接龙
+    #n = input(&quot;请输入接龙次数:&quot;)
+    n = 10
+    #print(get_chengyu(chengyulist,start_chengyu))
+
+    result=[]
+    jielong(n,start_chengyu)#调用递归函数jielong实现指定次数的接龙
+
+    #绘图部分（调用了上次作业的模块）
+    Tortoise_and_rabbit_race.draw()
+    penup()
+    #绘制接龙成语及个人信息
+    for j in range(10):
+        goto(350,200-50*j)
+        write(result[j]+&quot;\n\n&quot;,move = True, align=&quot;left&quot;, font=('宋体',20,'normal'))
+    goto(280,-250)
+    write(&quot;计201 侯云浩 42027150&quot;,move = True, align=&quot;left&quot;, font=('宋体',20,'normal'))
+    #绘制条形码
+    ori_number=[4,2,0,2,7,1,5,0]
+    code_number = make_code(ori_number)
+    draw_bar_code(code_number)
+    exitonclick()
+</div></code></pre>
+<hr>
+<p>#git管理过程展示
+<img src="git.png" alt=""></p>
+<blockquote>
+<p>说明：由于通过使用git对代码进行管理是近期刚学到的内容，所以3/28日之前的记录并没有保存。</p>
+</blockquote>
+
+</body>
+</html>
