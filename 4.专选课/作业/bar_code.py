@@ -13,43 +13,53 @@ from turtle import*
 encoder = EAN13Encoder("4202715020223")
 encoder.save("pyStrich.png")
  """
-
-code_table={
-    "left":{
-        0:'0001101',
-        1:'0011001',
-        2:'0010011',
-        3:'0111101',
-        4:'0100011',
-        5:'0110001',
-        6:'0101111',
-        7:'0111011',
-        8:'0110111',
-        9:'0001011'
-    },
-    "right":{
-        0:'1110010',
-        1:'1100110',
-        2:'1101100',
-        3:'1000010',
-        4:'1011100',
-        5:'1001110',
-        6:'1010000',
-        7:'1000100',
-        8:'1001000',
-        9:'1110100'
-    }
+code_table={#code 128C
+    0:'11011001111',
+    1:'11001101100',
+    2:'11001100110',
+    3:'10010011000',
+    4:'10010001100',
+    5:'10001001100',
+    6:'10011001000',
+    7:'10011000100',
+    8:'10001100100',
+    9:'11001001000'
 }
+# code_table={
+#     "left":{
+#         0:'0001101',
+#         1:'0011001',
+#         2:'0010011',
+#         3:'0111101',
+#         4:'0100011',
+#         5:'0110001',
+#         6:'0101111',
+#         7:'0111011',
+#         8:'0110111',
+#         9:'0001011'
+#     },
+#     "right":{
+#         0:'1110010',
+#         1:'1100110',
+#         2:'1101100',
+#         3:'1000010',
+#         4:'1011100',
+#         5:'1001110',
+#         6:'1010000',
+#         7:'1000100',
+#         8:'1001000',
+#         9:'1110100'
+#     }
+# }
 def make_code(number):
-    START_END = "01010"
-    MID = "101"
-    output = START_END
-    for i in number[:6]:
-        output += code_table["left"][i]
-    output +=MID
-    for i in number[6:]:
-        output += code_table['right'][i]
-    output += START_END
+    START = '11010011100'
+    END = '1100011101011'
+    MID = '10001011110'
+    output = START
+    for i in number:
+        output += code_table[i]
+    output += MID
+    output += END
     return output
 
 def draw_bar_code(stu_number):
@@ -57,7 +67,7 @@ def draw_bar_code(stu_number):
     print(num)
     penup()
     X, Y= 0, 0
-    w, h= 3, 50
+    w, h= 2,75 
     for n in num:
        fillcolor("black" if n == "1" else "white")
        begin_fill()
@@ -68,7 +78,7 @@ def draw_bar_code(stu_number):
        goto(X,Y)
        end_fill()
        X += w
-    goto(-10,-10)
+    goto(1000,1000)
     #write(num,move = True, align="left", font=('微软雅黑',5,'bold'))
 
 ori_number=[4,2,0,2,7,1,5,0]
