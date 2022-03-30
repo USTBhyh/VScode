@@ -51,8 +51,7 @@ def jielong(n,start_chengyu):
 
 #绘制学号条形码
 def draw_bar_code(stu_number):
-    binnum = bin(stu_number)
-    num = str(binnum)[2:]
+    num = str(stu_number)
     print(num)
     penup()
     X, Y= 360, -320
@@ -69,6 +68,45 @@ def draw_bar_code(stu_number):
        X += w
     goto(350,-330)
     write(num,move = True, align="left", font=('微软雅黑',5,'bold'))
+
+#转换为01序列
+code_table={
+    "left":{
+        0:'0001101',
+        1:'0011001',
+        2:'0010011',
+        3:'0111101',
+        4:'0100011',
+        5:'0110001',
+        6:'0101111',
+        7:'0111011',
+        8:'0110111',
+        9:'0001011'
+    },
+    "right":{
+        0:'1110010',
+        1:'1100110',
+        2:'1101100',
+        3:'1000010',
+        4:'1011100',
+        5:'1001110',
+        6:'1010000',
+        7:'1000100',
+        8:'1001000',
+        9:'1110100'
+    }
+}
+def make_code(number):
+    START_END = "01010"
+    MID = "101"
+    output = START_END
+    for i in number[:6]:
+        output += code_table["left"][i]
+    output +=MID
+    for i in number[6:]:
+        output += code_table['right'][i]
+    output += START_END
+    return output
 
 
 if __name__ == '__main__':
@@ -105,5 +143,7 @@ if __name__ == '__main__':
     goto(280,-250)
     write("计201 侯云浩 42027150",move = True, align="left", font=('宋体',20,'normal'))
     #绘制条形码
-    draw_bar_code("0000042027150")
+    ori_number=[4,2,0,2,7,1,5,0]
+    code_number = make_code(ori_number)
+    draw_bar_code(code_number)
     exitonclick()
