@@ -58,17 +58,17 @@ def preprocess(text, freq=0):
     text = text.replace('', '')
 
 
-    text = text.replace('person', ' ')
-    text = text.replace('airplane', ' ')
-    text = text.replace('cat', ' ')
-    text = text.replace('skateboard', ' ')
-    text = text.replace('remote', ' ')
-    text = text.replace('suitcase', ' ')
-    text = text.replace('mouse', ' ')
-    text = text.replace('keyboard', ' ')
-    text = text.replace('toilet', ' ')
-    text = text.replace('bird', ' ')
-    text = text.replace('book', ' ')
+    # text = text.replace('person', ' ')
+    # text = text.replace('airplane', ' ')
+    # text = text.replace('cat', ' ')
+    # text = text.replace('skateboard', ' ')
+    # text = text.replace('remote', ' ')
+    # text = text.replace('suitcase', ' ')
+    # text = text.replace('mouse', ' ')
+    # text = text.replace('keyboard', ' ')
+    # text = text.replace('toilet', ' ')
+    # text = text.replace('bird', ' ')
+    # text = text.replace('book', ' ')
     
 
 
@@ -78,10 +78,10 @@ def preprocess(text, freq=0):
     # 删除低频词，减少噪音影响
     # 获得words中不同物体出现的次数
     word_counts = collections.Counter(words)
-    # 保留出现次数大于freq的物体名称
-    trimmed_words = [word for word in words if word_counts[word] > freq]
+    # 保留出现次数大于freq的物体名称(修改：对字典中的词进行遍历，获得无重复的列表)
+    trimmed_words = [word for word in word_counts if word_counts[word] > freq]
     
-    # print(trimmed_words)  有重复的
+    print(trimmed_words)  #调试用
     return trimmed_words
 
 '''
@@ -151,7 +151,12 @@ def get_batches(words, window_size):
         targets = get_targets(words, idx, window_size)
         # print(targets)
         for y in targets:
-            yield words[idx], y
+            yield words[idx], y#在这里就等价于return的作用?
+'''
+yield和return的关系和区别了,带yield的函数是一个生成器,而不是一个函数了,这个生成器有一个函数就是next函数,next就相当于
+“下一步”生成哪个数,这一次的next开始的地方是接着上一次的next停止的地方执行的,所以调用next的时候,生成器并不会从foo函数的
+开始执行,只是接着上一步停止的地方开始,然后遇到yield后,return出要生成的数,此步就结束。
+'''
 
 def softmax(vector):
     res = np.exp(vector)
@@ -229,7 +234,7 @@ if __name__ == "__main__":
     # 这里是小南瓜帮我改过的！！！！！他说原来是0.8
     threshold = 1.0  # 剔除概率阈值
     windows = 3
-    freq = 300   # 之前是2
+    freq = 2   # 之前是2(修改：对出现次数进行了修改，原来是300次)
     int_to_vocab, train_words = get_train_words(path, t, threshold, freq)
     np.save('int_to_vocab', int_to_vocab)
     # np.save 以npy格式将数组保存到二进制文件中。
@@ -239,7 +244,7 @@ if __name__ == "__main__":
     # 构建vocabulary_size*vector_dimension维的随机阵列，（物体数量*物体标签向量）
     input_vectors = np.random.random([vocabulary_size, vector_dimension])   
     output_vectors = np.random.random([vocabulary_size, vector_dimension])
-    epochs = 10 #
+    epochs = 1 #修改：训练次数，原来为10
     sigma = 0.01
     K = 10
     iter = 1

@@ -1,16 +1,13 @@
-'BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
-'bus', 'vase', 'train', 'truck', 'boat', 'traffic light',
-'fire hydrant', 'orange','stop sign','vase', 'cell phone','parking meter', 'bench', 'bird',
-'cat', 'dog', 'horse', 'bicycle','hair drier','chair', 'refrigerator', 'sheep',  'bicycle','cow', 'elephant', 'bear',
-'zebra', 'giraffe', 'backpack', 'dining table','umbrella', 'handbag', 'tie',
-'suitcase', 'frisbee','potted plant','cell phone','hot dog', 'skis', 'motorcycle','snowboard', 'sports ball',
-'kite', 'baseball bat','tv','zebra','parking meter', 'potted plant','refrigerator','chair','baseball glove', 'skateboard',
-'surfboard', 'tennis racket','tv', 'bowl','bottle', 'wine glass', 'hair drier', 'cup','tennis racket',
-'fork', 'knife', 'spoon', 'horse','tv','stop sign','bowl', 'banana', 'refrigerator','refrigerator','apple',
-'sandwich','pizza','car', 'laptop','potted plant','horse','orange', 'broccoli', 'tennis racket','carrot', 'hot dog', 'pizza',
-'donut', 'cake','zebra','bowl','laptop','baseball glove', 'chair','skateboard',  'person','couch','car', 'parking meter','potted plant', 'bed',
-'dining table', 'pizza','toilet','laptop', 'bowl','tv','hot dog', 'laptop', 'mouse', 'remote',
-'keyboard', 'cell phone','potted plant','hot dog', 'microwave', 'potted plant','refrigerator','oven','potted plant', 'toaster','baseball glove','baseball glove','baseball glove',
-'sink', 'refrigerator','stop sign','suitcase',  'book', 'clock', 'vase', 'scissors',
-'teddy bear', 'hair drier', 'toothbrush','zebra','toothbrush','toothbrush','refrigerator','carrot','cup','carrot','person','motorcycle'
-'orange','laptop','laptop','wine glass','wine glass','wine glass','teddy bear','teddy bear','teddy bear','cup','cup'
+keyboard mouse cup cellphone keyboard cup mouse mouse tv  
+keyboard cup mouse tv cup keyboard mouse mouse cellphone  
+mouse mouse keyboard mouse keyboard cup cellphone cup tv  
+mouse keyboard mouse mouse keyboard cup tv cup cellphone  
+tv cup keyboard cup cellphone mouse keyboard mouse mouse  
+cup cellphone cup keyboard tv keyboard mouse mouse mouse  
+cup tv cup keyboard cellphone keyboard mouse mouse mouse  
+mouse mouse mouse keyboard keyboard cup cup tv cellphone  
+cellphone cup keyboard cup tv keyboard mouse mouse mouse
+silk silk person person silk cup apple apple banana banana
+orange orange dog cake cake cat carrot dog dog cat dog cat
+carrot carrot person person phone pizza phone pizza person
+pizza phone pizza phone
